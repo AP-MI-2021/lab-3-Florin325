@@ -35,6 +35,7 @@ def get_longest_div_k(number_list, k):
 
 
 def test_get_longest_div_k():
+
     assert get_longest_div_k([2, 3, 4, 5, 6, 7], 2) == [2]
     assert get_longest_div_k([1, 3, 2, 13, 16, 6], 3) == [3]
 
