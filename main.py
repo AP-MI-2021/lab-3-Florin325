@@ -45,7 +45,7 @@ def only_primes(number):
 
     while number:
         digit = number % 10
-        if not digit in primes:
+        if digit not in primes:
             return False
         number //= 10
 
@@ -85,6 +85,50 @@ def test_get_longest_prime_digits():
     assert get_longest_prime_digits([45, 23, 72, 237, 63, 54]) == [23, 72, 237]
 
 
+def is_palindrome(number):
+    tmp = number
+    inv = 0
+    while tmp != 0:
+        inv = inv * 10 + tmp % 10
+        tmp = tmp // 10
+    if inv == number:
+        return True
+    return False
+
+
+def get_longest_all_palindromes(number_list):
+    left = -1
+    right = -1
+    length = -1
+    good_left = -1
+    good_right = -1
+
+    for number in number_list:
+        right += 1
+
+        if is_palindrome(number):
+            if left == -1:
+                left = right
+        else:
+            if left != -1 and (right - left) > length:
+                length = right - left
+                good_left = left
+                good_right = right
+
+            left = -1
+
+    if left != -1 and (right - left - 1) > length:
+        good_left = left
+        good_right = right
+
+    return number_list[good_left:good_right]
+
+
+def test_get_longest_all_palindromes():
+    assert get_longest_all_palindromes([121, 12345, 65756, 4, 22, 150]) == [65756, 4, 22]
+    assert get_longest_all_palindromes([7432, 43, 77, 45654, 1, 98]) == [77, 45654, 1]
+
+
 """
 Sectiune UI
 """
@@ -119,6 +163,11 @@ def solve_second_task(numbers):
     print(answer)
 
 
+def solve_third_task(numbers):
+    answer = get_longest_all_palindromes(numbers)
+    print(answer)
+
+
 def start():
     numbers = []
 
@@ -142,6 +191,7 @@ def start():
 def test():
     test_get_longest_div_k()
     test_get_longest_prime_digits()
+    test_get_longest_all_palindromes()
 
 
 start()
