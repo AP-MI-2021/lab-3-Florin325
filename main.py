@@ -138,7 +138,8 @@ def print_menu():
     print("1. Citire date")
     print("2. Determinare cea mai lungă subsecvență unde toate numerele sunt divizibile cu k (citit)")
     print("3. Determinare cea mai lungă subsecvență unde toate numerele sunt formate din cifre prime")
-    print("4. Ieșire")
+    print("4. Determinare cea mai lungă subsecvență unde toate numerele sunt palindrome")
+    print("5. Ieșire")
 
 
 def read_list():
@@ -183,6 +184,8 @@ def start():
         elif command == '3':
             solve_second_task(numbers)
         elif command == '4':
+            solve_third_task(numbers)
+        elif command == '5':
             return
         else:
             print("Comanda invalida!")
@@ -195,3 +198,4 @@ def test():
 
 
 start()
+test()
